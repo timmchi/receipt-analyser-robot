@@ -1,6 +1,6 @@
 from robocorp.tasks import task
+from receipt_processor import process_all_receipts
 
 @task
-def minimal_task():
-    message = "Hello"
-    message = message + " World!"
+def process_receipts():
+    process_all_receipts()
