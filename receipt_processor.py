@@ -9,7 +9,7 @@ from utils import extract_store, extract_date, extract_total
 from categorizer import load_categories, categorize
 from charts import generate_category_chart, generate_store_chart
 from report import create_pdf_report
-# from mailer import send_report_email
+from mailer import send_report_email
 
 
 RECEIPTS_DIR = "receipts"
@@ -55,7 +55,7 @@ def process_all_receipts() -> None:
     )
 
     archive_receipts()
-    # email_outputs()
+    email_outputs()
 
 
 def archive_receipts() -> None:
@@ -67,9 +67,9 @@ def archive_receipts() -> None:
     )
 
 
-# def email_outputs() -> None:
-#     send_report_email(
-#         attachments=[REPORT_PDF, EXPENSES_CSV, ARCHIVE_ZIP],
-#         subject="Automated Receipt Report",
-#         body="Attached are the generated PDF report, CSV data, and archived receipts.",
-#     )
+def email_outputs() -> None:
+    send_report_email(
+        attachments=[REPORT_PDF, EXPENSES_CSV, ARCHIVE_ZIP],
+        subject="Automated Receipt Report",
+        body="All of the required files are attached",
+    )
