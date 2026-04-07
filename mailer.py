@@ -1,6 +1,8 @@
 import os
 from RPA.Email.ImapSmtp import ImapSmtp
 
+# Sends the final outputs of the robot by email.
+# This is one of the last steps, after the charts and PDF report have already been created. The email settings are read from environment variables so that the details do not need to be hardcoded into the script.
 def send_report_email(
     attachments: list[str],
     subject: str = "Receipt Expense Report",

@@ -1,4 +1,5 @@
-# gonna keep all main logic here
+# Contains the main process logic of the whole robot.
+# It brings together arts like OCR, data extraction, categorization, chart generation, report creation, archiving, and email sending.
 
 import csv
 import os
@@ -20,7 +21,10 @@ STORE_CHART = os.path.join(OUTPUT_DIR, "store_chart.png")
 REPORT_PDF = os.path.join(OUTPUT_DIR, "report.pdf")
 ARCHIVE_ZIP = os.path.join(OUTPUT_DIR, "receipts.zip")
 
-
+# Main function of the robot.
+# It handles the full process from raw receipt images to final outputs.
+# First it processes the receipts and writes the extracted data into a csv file.
+# After that it creates charts, builds the PDF report, archives the receipts, andsends the outputs by email.
 def process_all_receipts() -> None:
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
@@ -57,7 +61,8 @@ def process_all_receipts() -> None:
     archive_receipts()
     email_outputs()
 
-
+# Archives the original receipt images into a zip file.
+# This is one of the final steps and is mainly there so the processed input files are also kept together in a cleaner format.
 def archive_receipts() -> None:
     archive = Archive()
     archive.archive_folder_with_zip(
@@ -66,7 +71,8 @@ def archive_receipts() -> None:
         recursive=True,
     )
 
-
+# Sends the final outputs by email.
+# It uses the separate mailer module, and in the full process it acts as the final delivery step after the robot has already produced the csv file, charts, PDF report, and zip archive.
 def email_outputs() -> None:
     send_report_email(
         attachments=[REPORT_PDF, EXPENSES_CSV, ARCHIVE_ZIP],

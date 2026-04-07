@@ -3,6 +3,8 @@ from collections import defaultdict
 import matplotlib.pyplot as plt
 
 
+# Reads the processed receipt data from the csv file and creates a chart that shows how much money was spent in each category.
+# In the full process, this is used after the receipt data has already been extracted and saved into structured form.
 def generate_category_chart(csv_file: str, output_path: str) -> dict[str, float]:
     totals = defaultdict(float)
 
@@ -27,7 +29,8 @@ def generate_category_chart(csv_file: str, output_path: str) -> dict[str, float]
 
     return dict(totals)
 
-
+# Same basic thing as the category chart function, but here the totals are grouped by store instead of category.
+# It is part of the reporting side of the project, because it turns the collected receipt data into a more visual summary.
 def generate_store_chart(csv_file: str, output_path: str) -> dict[str, float]:
     totals = defaultdict(float)
 

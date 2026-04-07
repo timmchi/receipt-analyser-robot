@@ -1,5 +1,7 @@
 from RPA.PDF import PDF
 
+# Creates the final PDF report of the whole process.
+# By the time this function is used, the receipt data has already been extracted, categorized, and summarized. The function takes those results, formats them into a report, and then adds the generated charts to the PDF so the final output is not just text tables.
 def create_pdf_report(
     category_totals: dict[str, float],
     store_totals: dict[str, float],
